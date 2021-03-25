@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            background-color: black;
+        }
+
+        #gameScreen {
+            border: 1px solid black;
+        }
+
+        img {
+            display: none;
+        }
+
+        .game_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .game_wrapper {
+            border: 11px solid blue;
+            width: 800px;
+            height: 600px;
+        }
+
+        .game_header {
+            margin-top: -1em;
+            font-size: 3em;
+        }
+
+        @-webkit-keyframes text-flicker-in-glow {
+            0% {
+                opacity: 0
+            }
+
+            10% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            10.1% {
+                opacity: 1;
+                text-shadow: none
+            }
+
+            10.2% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            20% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            20.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .25)
+            }
+
+            20.6% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            30% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            30.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            30.5% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            30.6% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            45% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            45.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            55% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            55.1% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            57% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            57.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .35)
+            }
+
+            60% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .35)
+            }
+
+            60.1% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            65% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            65.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .35), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            75% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .35), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            75.1% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            77% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            77.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .4), 0 0 110px rgba(255, 255, 255, .2), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            85% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .4), 0 0 110px rgba(255, 255, 255, .2), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            85.1% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            86% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            86.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .6), 0 0 60px rgba(255, 255, 255, .45), 0 0 110px rgba(255, 255, 255, .25), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .6), 0 0 60px rgba(255, 255, 255, .45), 0 0 110px rgba(255, 255, 255, .25), 0 0 100px rgba(255, 255, 255, .1)
+            }
+        }
+
+        @keyframes text-flicker-in-glow {
+            0% {
+                opacity: 0
+            }
+
+            10% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            10.1% {
+                opacity: 1;
+                text-shadow: none
+            }
+
+            10.2% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            20% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            20.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .25)
+            }
+
+            20.6% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            30% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            30.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            30.5% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            30.6% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            45% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            45.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            55% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .45), 0 0 60px rgba(255, 255, 255, .25)
+            }
+
+            55.1% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            57% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            57.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .35)
+            }
+
+            60% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .35)
+            }
+
+            60.1% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            65% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            65.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .35), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            75% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .35), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            75.1% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            77% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            77.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .4), 0 0 110px rgba(255, 255, 255, .2), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            85% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .55), 0 0 60px rgba(255, 255, 255, .4), 0 0 110px rgba(255, 255, 255, .2), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            85.1% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            86% {
+                opacity: 0;
+                text-shadow: none
+            }
+
+            86.1% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .6), 0 0 60px rgba(255, 255, 255, .45), 0 0 110px rgba(255, 255, 255, .25), 0 0 100px rgba(255, 255, 255, .1)
+            }
+
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(255, 255, 255, .6), 0 0 60px rgba(255, 255, 255, .45), 0 0 110px rgba(255, 255, 255, .25), 0 0 100px rgba(255, 255, 255, .1)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img src="assets/images/ball.png" id="img_ball" alt="">
+    <img src="assets/images/brick.jpg" id="img_brick" alt="">
+
+    <div class="game_container">
+        <h1 class="game_header">BRICK BREAKER GAME</h1>
+        <div class="game_wrapper">
+            <canvas id="gameScreen" width="800" height="600"></canvas>
+        </div>
+
+    </div>
+
+
+    <script src="./src/index.js" type="module"></script>
+</body>
+
+</html>
